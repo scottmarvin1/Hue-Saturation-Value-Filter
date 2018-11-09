@@ -15,7 +15,7 @@ class HSVWidget(QtGui.QWidget):
         self.cam = cv2.VideoCapture(0) # sets up video capture object
         
         self.ui.addButton.clicked.connect(lambda: self.add())
-        self.ui.clearButton.clicked.connect(lambda: self.clear())
+        self.ui.clearButton.clicked.connect(lambda: self.clearList())
 
         self.timer = QtCore.QTimer()  # sets timer to call update when it runs out
         self.timer.timeout.connect(self.update) # when timeout call update
@@ -43,9 +43,10 @@ class HSVWidget(QtGui.QWidget):
         
     def add(self):
         self.text = self.ui.filterEntry.text()
+        self.ui.filterEntry.clear()
         self.ui.filterList.addItem(self.text)
     
-    def clear(self):
+    def clearList(self):
         self.ui.filterList.clear()
         
 
